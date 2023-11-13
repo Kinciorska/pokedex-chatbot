@@ -1,0 +1,20 @@
+version: "3.1"
+
+stories:
+
+#- story: about pokemon path
+#  steps:
+#  - intent: greet
+#  - action: utter_greet
+#  - intent: aboutpokemon
+#  - action: action_pokedex_entry
+#  - action: utter_pokemon
+##  - action: action_hello_world
+#  - action: utter_inquiry_another_information
+#  - intent: affirm
+#  - intent: aboutpokemon
+#  - action: action_pokedex_entry
+#  - action: utter_pokemon
+#  - action: utter_inquiry_another_information
+#  - intent: deny
+#  - action: utter_goodbye

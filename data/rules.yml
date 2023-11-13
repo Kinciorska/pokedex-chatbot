@@ -1,0 +1,29 @@
+version: "3.1"
+
+rules:
+
+- rule: Say hi anytime the user says hi
+  steps:
+  - intent: greet
+  - action: utter_greet
+
+- rule: Say goodbye anytime the user says goodbye
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
+
+- rule: Say 'I am a bot' anytime the user challenges
+  steps:
+  - intent: bot_challenge
+  - action: utter_iamabot
+
+- rule: Say 'I am a pokedex' anytime the user asks what the bot does
+  steps:
+  - intent: abilities
+  - action: utter_iamapokedex
+
+- rule: Answer with a flavor text when user asks about a pokemon
+  steps:
+  - intent: aboutpokemon
+  - action: utter_pokemon_entry
+  - action: action_pokedex_entry
