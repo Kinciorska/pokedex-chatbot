@@ -1,0 +1,31 @@
+# Virtual environment
+venv/
+
+# Compiled Python files
+__pycache__/
+*.pyc
+
+# Dependency folders
+node_modules/
+lib/
+
+# Docker
+docker-compose.override.yml
+docker-compose.yml
+.docker/
+
+# Rasa generated files
+rasa/.env
+rasa/__pycache__/
+rasa/*.db
+rasa/*.log
+rasa/*.model
+
+# IDE-specific files
+.vscode/
+.idea/
+
+# Miscellaneous
+*.pyc
+*.pyo
+.DS_Store
