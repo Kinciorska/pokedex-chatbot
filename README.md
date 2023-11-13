@@ -1,8 +1,8 @@
-# RasaPokedex Chatbot
+# Pokedex Chatbot
 
 ## Overview
 
-RasaPokedex is an innovative chatbot built using the Rasa framework, designed to emulate the functionality of a Pokedex from the popular Pokemon series. The chatbot provides an interactive and dynamic user experience by allowing users to input questions related to Pokemon and receive detailed information about them.
+Pokedex is an innovative chatbot built using the Rasa framework, designed to emulate the functionality of a Pokedex from the popular Pokemon series. The chatbot provides an interactive and dynamic user experience by allowing users to input questions related to Pokemon and receive detailed information about them.
 
 ## Features
 
