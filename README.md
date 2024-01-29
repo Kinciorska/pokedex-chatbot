@@ -18,7 +18,7 @@ To get started with RasaPokedex, follow these steps:
 
 1. Clone the repository.
 2. Install the necessary dependencies using `pip install -r requirements.txt`.
-3. Run the pokedex chatbot using the command 'rasa train' and 'rasa shell', as well as 'run action server'
+3. Run the pokedex chatbot using the command 'rasa train' and 'rasa shell', as well as 'rasa run actions'
 
 Feel free to explore the chatbot, ask questions, and enjoy the interactive Pokemon experience!
 
