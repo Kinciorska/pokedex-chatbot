@@ -70,10 +70,10 @@ nlu:
     - What type is [Squirtle](pokemon)?
     - What is the type of [Muk](pokemon)?
 
-- intent: weakness
+- intent: aboutvulnerability
   examples: |
-    - What is effective against [psychic] (pokemon_type) type?
-    - What is good against [dragon] (pokemon_type) pokemons?
+    - What is effective against [Psychic](pokemon_type) type?
+    - What is good against [Dragon](pokemon_type) pokemons?
 
 - lookup: pokemon_type
   examples: |

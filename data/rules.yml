@@ -32,3 +32,8 @@ rules:
   steps:
   - intent: abouttype
   - action: action_get_type
+
+- rule: Answer with the vulnerable types to a question about type vulnerability
+  steps:
+  - intent: aboutvulnerability
+  - action: action_get_type_vulnerability

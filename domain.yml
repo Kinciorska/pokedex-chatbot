@@ -9,7 +9,7 @@ intents:
   - abilities
   - aboutpokemon
   - abouttype
-  - weakness
+  - aboutvulnerability
 
 entities:
   - pokemon
@@ -44,15 +44,13 @@ responses:
   utter_pokemon_entry:
   - text: "Entry about {pokemon}:"
 
-  utter_pokemon_type:
-    - text: "{pokemon} is {pokemon_type} type."
-
   utter_inquiry_another_information:
   - text: "Do you want to ask about anything else?"
 
 actions:
   - action_pokedex_entry
   - action_get_type
+  - action_get_type_vulnerability
 
 
 session_config:
