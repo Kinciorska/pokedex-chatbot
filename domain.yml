@@ -8,9 +8,12 @@ intents:
   - bot_challenge
   - abilities
   - aboutpokemon
+  - abouttype
+  - weakness
 
 entities:
   - pokemon
+  - pokemon_type
 
 slots:
   pokemon:
@@ -18,6 +21,12 @@ slots:
     mappings:
       - type: from_entity
         entity: pokemon
+
+  pokemon_type:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: pokemon_type
 
 responses:
   utter_greet:
@@ -35,11 +44,15 @@ responses:
   utter_pokemon_entry:
   - text: "Entry about {pokemon}:"
 
+  utter_pokemon_type:
+    - text: "{pokemon} is {pokemon_type} type."
+
   utter_inquiry_another_information:
   - text: "Do you want to ask about anything else?"
 
 actions:
   - action_pokedex_entry
+  - action_get_type
 
 
 session_config:

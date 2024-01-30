@@ -65,6 +65,37 @@ nlu:
     - I want to know about [Squirtle](pokemon)
     - Tell me about [Muk](pokemon)
 
+- intent: abouttype
+  examples: |
+    - What type is [Squirtle](pokemon)?
+    - What is the type of [Muk](pokemon)?
+
+- intent: weakness
+  examples: |
+    - What is effective against [psychic] (pokemon_type) type?
+    - What is good against [dragon] (pokemon_type) pokemons?
+
+- lookup: pokemon_type
+  examples: |
+    - Normal
+    - Fire
+    - Water
+    - Grass
+    - Flying 
+    - Fighting
+    - Poison
+    - Electric
+    - Ground
+    - Rock
+    - Psychic
+    - Ice
+    - Bug
+    - Ghost
+    - Steel
+    - Dragon
+    - Dark
+    - Fairy
+
 - lookup: pokemon
   examples: |
     - Bulbasaur

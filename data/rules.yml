@@ -27,3 +27,8 @@ rules:
   - intent: aboutpokemon
   - action: utter_pokemon_entry
   - action: action_pokedex_entry
+
+- rule: Answer with the type/types of the pokemon when the user asks about it
+  steps:
+  - intent: abouttype
+  - action: action_get_type

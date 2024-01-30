@@ -31,3 +31,31 @@ class ActionPokedexEntry(Action):
         dispatcher.utter_message(text=flavor_text)
 
         return []
+
+
+class ActionGetType(Action):
+
+    def name(self) -> Text:
+        return 'action_get_type'
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        pokemon_name = tracker.get_slot('pokemon')
+        pokemon_name = str(pokemon_name.lower())
+        url = urljoin('https://pokeapi.co/api/v2/pokemon/', pokemon_name)
+        data = requests.get(url).json()
+        pokemon_types = data['types']
+        match len(pokemon_types):
+            case 1:
+                pokemon_type = str(data['types'][0]['type']['name'])
+            case 2:
+                type_1 = str(data['types'][0]['type']['name'])
+                type_2 = str(data['types'][1]['type']['name'])
+                pokemon_type = f"{type_1} and {type_2}"
+
+        response = f"{pokemon_name.capitalize()} is a {pokemon_type} type pokemon."
+
+        dispatcher.utter_message(text=response)
+
+        return []
