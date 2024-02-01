@@ -48,6 +48,9 @@ responses:
   utter_inquiry_another_information:
   - text: "Do you want to ask about anything else?"
 
+  utter_please_rephrase:
+  - text: "I'm sorry, I didn't quite understand that. Could you rephrase?"
+
 actions:
   - action_pokedex_entry
   - action_get_type
