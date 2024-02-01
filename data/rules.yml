@@ -33,7 +33,12 @@ rules:
   - intent: abouttype
   - action: action_get_type
 
-- rule: Answer with the vulnerable types to a question about type vulnerability
+- rule: Answer with the types vulnerability
   steps:
   - intent: aboutvulnerability
   - action: action_get_type_vulnerability
+
+- rule: Answer with the types strength
+  steps:
+  - intent: aboutstrength
+  - action: action_get_type_strength

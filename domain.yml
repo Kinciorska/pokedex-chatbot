@@ -10,6 +10,7 @@ intents:
   - aboutpokemon
   - abouttype
   - aboutvulnerability
+  - aboutstrength
 
 entities:
   - pokemon
@@ -51,6 +52,7 @@ actions:
   - action_pokedex_entry
   - action_get_type
   - action_get_type_vulnerability
+  - action_get_type_strength
 
 
 session_config:

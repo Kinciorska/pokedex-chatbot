@@ -78,3 +78,21 @@ class ActionGetTypeVulnerability(Action):
         dispatcher.utter_message(text=response)
 
         return []
+
+
+class ActionGetTypeStrength(Action):
+
+    def name(self) -> Text:
+        return 'action_get_type_strength'
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        type_name = tracker.get_slot('pokemon_type')
+        type_name = str(type_name.lower())
+        type_vulnerability = pokemon_type_effectiveness[type_name]['strong_against']
+        response = f"{type_name.capitalize()} type attacks are strong against {type_vulnerability} pokemons."
+
+        dispatcher.utter_message(text=response)
+
+        return []

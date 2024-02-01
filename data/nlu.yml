@@ -75,6 +75,11 @@ nlu:
     - What is effective against [Psychic](pokemon_type) type?
     - What is good against [Dragon](pokemon_type) pokemons?
 
+- intent: aboutstrength
+  examples: |
+    - What are [Psychic](pokemon_type) type attacks good against?
+    - What types are vulnerable to [Dragon](pokemon_type) type attacks?
+
 - lookup: pokemon_type
   examples: |
     - Normal
