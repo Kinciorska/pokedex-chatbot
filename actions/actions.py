@@ -71,13 +71,26 @@ class ActionGetTypeVulnerability(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         type_name = tracker.get_slot('pokemon_type')
-        type_name = str(type_name.lower())
-        type_vulnerability = pokemon_type_effectiveness[type_name]['vulnerable_to']
-        response = f"{type_name.capitalize()} type pokemons are vulnerable to {type_vulnerability} attacks."
+        if type_name is None:
+            response = ("Sorry, I didn't understand what type are you asking about. "
+                        "Can you repeat the question please? ")
+            dispatcher.utter_message(text=response)
 
-        dispatcher.utter_message(text=response)
+            return [SlotSet('pokemon_type', None)]
 
-        return []
+        try:
+            type_name = str(type_name.lower())
+            type_vulnerability = pokemon_type_effectiveness[type_name]['vulnerable_to']
+            response = f"{type_name.capitalize()} type pokemons are vulnerable to {type_vulnerability} attacks."
+            dispatcher.utter_message(text=response)
+
+            return [SlotSet('pokemon_type', None)]
+
+        except KeyError:
+            response = ("Sorry, I didn't understand what type are you asking about. "
+                        "Can you repeat the question please? ")
+            dispatcher.utter_message(text=response)
+            return [SlotSet('pokemon_type', None)]
 
 
 class ActionGetTypeStrength(Action):
@@ -89,10 +102,25 @@ class ActionGetTypeStrength(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         type_name = tracker.get_slot('pokemon_type')
-        type_name = str(type_name.lower())
-        type_vulnerability = pokemon_type_effectiveness[type_name]['strong_against']
-        response = f"{type_name.capitalize()} type attacks are strong against {type_vulnerability} pokemons."
+        if type_name is None:
+            response = ("Sorry, I didn't understand what type are you asking about. "
+                        "Can you repeat the question please? ")
+            dispatcher.utter_message(text=response)
 
-        dispatcher.utter_message(text=response)
+            return [SlotSet('pokemon_type', None)]
 
-        return []
+        try:
+            type_name = str(type_name.lower())
+            type_vulnerability = pokemon_type_effectiveness[type_name]['strong_against']
+            response = f"{type_name.capitalize()} type attacks are strong against {type_vulnerability} pokemons."
+            dispatcher.utter_message(text=response)
+
+            return [SlotSet('pokemon_type', None)]
+
+        except KeyError:
+            response = ("Sorry, I didn't understand what type are you asking about. "
+                        "Can you repeat the question please? ")
+            dispatcher.utter_message(text=response)
+            return [SlotSet('pokemon_type', None)]
+
+
