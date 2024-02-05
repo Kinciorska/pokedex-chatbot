@@ -70,6 +70,12 @@ nlu:
     - What type is [Squirtle](pokemon)?
     - What is the type of [Muk](pokemon)?
 
+- intent: aboutshiny
+  examples: |
+    - Is there a shiny [Squirtle](pokemon)?
+    - Can [Muk](pokemon) be shiny?
+    - How does shiny [Squirtle](pokemon) look like?
+
 - intent: aboutvulnerability
   examples: |
     - What is effective against [Psychic](pokemon_type) type?

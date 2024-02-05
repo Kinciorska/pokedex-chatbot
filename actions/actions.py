@@ -24,11 +24,17 @@ class ActionPokedexEntry(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         pokemon_name = tracker.get_slot('pokemon')
-        url = urljoin('https://pokeapi.co/api/v2/pokemon-species/', str(pokemon_name.lower()))
-        data = requests.get(url).json()
-        flavor_text = data['flavor_text_entries'][0]['flavor_text']
+        try:
+            url = urljoin('https://pokeapi.co/api/v2/pokemon-species/', str(pokemon_name.lower()))
+            data = requests.get(url).json()
+            flavor_text = data['flavor_text_entries'][0]['flavor_text']
 
-        dispatcher.utter_message(text=flavor_text)
+            dispatcher.utter_message(text=flavor_text)
+
+        except requests.exceptions.JSONDecodeError:
+            response = "I didn't understand which pokemon are you talking about."
+
+            dispatcher.utter_message(text=response)
 
         return []
 
@@ -75,22 +81,21 @@ class ActionGetTypeVulnerability(Action):
             response = ("Sorry, I didn't understand what type are you asking about. "
                         "Can you repeat the question please? ")
             dispatcher.utter_message(text=response)
+        else:
+            try:
+                type_name = str(type_name.lower())
+                type_vulnerability = pokemon_type_effectiveness[type_name]['vulnerable_to']
+                response = f"{type_name.capitalize()} type pokemons are vulnerable to {type_vulnerability} attacks."
 
-            return [SlotSet('pokemon_type', None)]
+                dispatcher.utter_message(text=response)
 
-        try:
-            type_name = str(type_name.lower())
-            type_vulnerability = pokemon_type_effectiveness[type_name]['vulnerable_to']
-            response = f"{type_name.capitalize()} type pokemons are vulnerable to {type_vulnerability} attacks."
-            dispatcher.utter_message(text=response)
+            except KeyError:
+                response = ("Sorry, I didn't understand what type are you asking about. "
+                            "Can you repeat the question please? ")
 
-            return [SlotSet('pokemon_type', None)]
+                dispatcher.utter_message(text=response)
 
-        except KeyError:
-            response = ("Sorry, I didn't understand what type are you asking about. "
-                        "Can you repeat the question please? ")
-            dispatcher.utter_message(text=response)
-            return [SlotSet('pokemon_type', None)]
+        return [SlotSet('pokemon_type', None)]
 
 
 class ActionGetTypeStrength(Action):
@@ -105,23 +110,24 @@ class ActionGetTypeStrength(Action):
         if type_name is None:
             response = ("Sorry, I didn't understand what type are you asking about. "
                         "Can you repeat the question please? ")
+
             dispatcher.utter_message(text=response)
 
-            return [SlotSet('pokemon_type', None)]
+        else:
+            try:
+                type_name = str(type_name.lower())
+                type_vulnerability = pokemon_type_effectiveness[type_name]['strong_against']
+                response = f"{type_name.capitalize()} type attacks are strong against {type_vulnerability} pokemons."
 
-        try:
-            type_name = str(type_name.lower())
-            type_vulnerability = pokemon_type_effectiveness[type_name]['strong_against']
-            response = f"{type_name.capitalize()} type attacks are strong against {type_vulnerability} pokemons."
-            dispatcher.utter_message(text=response)
+                dispatcher.utter_message(text=response)
 
-            return [SlotSet('pokemon_type', None)]
+            except KeyError:
+                response = ("Sorry, I didn't understand what type are you asking about. "
+                            "Can you repeat the question please? ")
 
-        except KeyError:
-            response = ("Sorry, I didn't understand what type are you asking about. "
-                        "Can you repeat the question please? ")
-            dispatcher.utter_message(text=response)
-            return [SlotSet('pokemon_type', None)]
+                dispatcher.utter_message(text=response)
+
+        return [SlotSet('pokemon_type', None)]
 
 
 class ActionGetImage(Action):
@@ -134,11 +140,49 @@ class ActionGetImage(Action):
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         pokemon_name = tracker.get_slot('pokemon')
         pokemon_name = str(pokemon_name.lower())
-        url = urljoin('https://pokeapi.co/api/v2/pokemon/', pokemon_name)
-        data = requests.get(url).json()
-        pokemon_image = data['sprites']['other']['official-artwork']['front_default']
+        try:
+            url = urljoin('https://pokeapi.co/api/v2/pokemon/', pokemon_name)
+            data = requests.get(url).json()
+            pokemon_image = data['sprites']['other']['official-artwork']['front_default']
 
-        dispatcher.utter_message(image=pokemon_image)
+            dispatcher.utter_message(image=pokemon_image)
+
+        except requests.exceptions.JSONDecodeError:
+            response = " Can you check the spelling please?"
+
+            dispatcher.utter_message(text=response)
 
         return []
 
+
+class ActionGetShinyImage(Action):
+
+    def name(self) -> Text:
+        return 'action_get_shiny_image'
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        pokemon_name = tracker.get_slot('pokemon')
+        if pokemon_name is None:
+            response = ("Sorry, I didn't understand what pokemon are you asking about. "
+                        "Can you repeat the question please? ")
+
+            dispatcher.utter_message(text=response)
+        else:
+            try:
+                pokemon_name = str(pokemon_name.lower())
+                url = urljoin('https://pokeapi.co/api/v2/pokemon/', pokemon_name)
+                data = requests.get(url).json()
+                pokemon_image = data['sprites']['other']['official-artwork']['front_shiny']
+                response = "Yes, here it is:"
+
+                dispatcher.utter_message(text=response, image=pokemon_image)
+
+            except requests.exceptions.JSONDecodeError:
+                response = ("Sorry, I didn't understand which pokemon are you talking about. "
+                            "Can you check the spelling please?")
+
+                dispatcher.utter_message(text=response)
+
+        return [SlotSet('pokemon', None)]

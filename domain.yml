@@ -9,6 +9,7 @@ intents:
   - abilities
   - aboutpokemon
   - abouttype
+  - aboutshiny
   - aboutvulnerability
   - aboutstrength
 
@@ -42,9 +43,6 @@ responses:
   utter_iamapokedex:
   - text: "I am a pokedex chatbot, I can tell you about pokemons from the first generation."
 
-  utter_pokemon_entry:
-  - text: "Entry about {pokemon}:"
-
   utter_inquiry_another_information:
   - text: "Do you want to ask about anything else?"
 
@@ -57,6 +55,7 @@ actions:
   - action_get_type_vulnerability
   - action_get_type_strength
   - action_get_image
+  - action_get_shiny_image
 
 
 session_config:

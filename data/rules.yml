@@ -26,8 +26,12 @@ rules:
   steps:
   - intent: aboutpokemon
   - action: action_get_image
-  - action: utter_pokemon_entry
   - action: action_pokedex_entry
+
+- rule: Answer with the image of the shiny
+  steps:
+  - intent: aboutshiny
+  - action: action_get_shiny_image
 
 - rule: Answer with the type/types of the pokemon when the user asks about it
   steps:
