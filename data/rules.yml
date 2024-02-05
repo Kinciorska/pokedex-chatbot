@@ -25,6 +25,7 @@ rules:
 - rule: Answer with a flavor text when user asks about a pokemon
   steps:
   - intent: aboutpokemon
+  - action: action_get_image
   - action: utter_pokemon_entry
   - action: action_pokedex_entry
 

@@ -124,3 +124,21 @@ class ActionGetTypeStrength(Action):
             return [SlotSet('pokemon_type', None)]
 
 
+class ActionGetImage(Action):
+
+    def name(self) -> Text:
+        return 'action_get_image'
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        pokemon_name = tracker.get_slot('pokemon')
+        pokemon_name = str(pokemon_name.lower())
+        url = urljoin('https://pokeapi.co/api/v2/pokemon/', pokemon_name)
+        data = requests.get(url).json()
+        pokemon_image = data['sprites']['other']['official-artwork']['front_default']
+
+        dispatcher.utter_message(image=pokemon_image)
+
+        return []
+
