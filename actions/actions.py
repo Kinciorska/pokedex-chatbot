@@ -95,7 +95,7 @@ class ActionGetTypeVulnerability(Action):
 
                 dispatcher.utter_message(text=response)
 
-        return [SlotSet('pokemon_type', None)]
+        return []
 
 
 class ActionGetTypeStrength(Action):
@@ -127,7 +127,7 @@ class ActionGetTypeStrength(Action):
 
                 dispatcher.utter_message(text=response)
 
-        return [SlotSet('pokemon_type', None)]
+        return []
 
 
 class ActionGetImage(Action):
@@ -169,6 +169,9 @@ class ActionGetShinyImage(Action):
                         "Can you repeat the question please? ")
 
             dispatcher.utter_message(text=response)
+
+            return [SlotSet('pokemon', None)]
+
         else:
             try:
                 pokemon_name = str(pokemon_name.lower())
@@ -185,4 +188,4 @@ class ActionGetShinyImage(Action):
 
                 dispatcher.utter_message(text=response)
 
-        return [SlotSet('pokemon', None)]
+            return []

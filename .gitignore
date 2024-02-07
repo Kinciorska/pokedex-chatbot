@@ -20,6 +20,9 @@ rasa/__pycache__/
 rasa/*.db
 rasa/*.log
 rasa/*.model
+.rasa
+models
+results
 
 # IDE-specific files
 .vscode/
