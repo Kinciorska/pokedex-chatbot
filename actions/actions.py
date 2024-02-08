@@ -141,9 +141,9 @@ class ActionGetImage(Action):
         pokemon_name = tracker.get_slot('pokemon')
         pokemon_name = str(pokemon_name.lower())
         try:
-            url = urljoin('https://pokeapi.co/api/v2/pokemon/', pokemon_name)
+            url = urljoin('http://127.0.0.1:8000/pokemon_detail/', pokemon_name)
             data = requests.get(url).json()
-            pokemon_image = data['sprites']['other']['official-artwork']['front_default']
+            pokemon_image = data['pokemon_img']
 
             dispatcher.utter_message(image=pokemon_image)
 
@@ -175,9 +175,9 @@ class ActionGetShinyImage(Action):
         else:
             try:
                 pokemon_name = str(pokemon_name.lower())
-                url = urljoin('https://pokeapi.co/api/v2/pokemon/', pokemon_name)
+                url = urljoin('http://127.0.0.1:8000/pokemon_detail/', pokemon_name)
                 data = requests.get(url).json()
-                pokemon_image = data['sprites']['other']['official-artwork']['front_shiny']
+                pokemon_image = data['pokemon_img_shiny']
                 response = "Yes, here it is:"
 
                 dispatcher.utter_message(text=response, image=pokemon_image)
