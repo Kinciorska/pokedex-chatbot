@@ -17,24 +17,29 @@ To get started with the Pokedex, follow these steps:
 1. Clone the repository
     ```
    git clone https://github.com/Kinciorska/pokedex-chatbot.git
-    ```
-2. Install the necessary dependencies:
+   
+2. Change into the correct directory
+   ```
+   cd pokedex-chatbot
+   ```
+
+3. Install the necessary dependencies:
     ``` 
    pip install -r requirements.txt
     ```
-3. Train the chatbot: 
+4. Train the chatbot: 
     ```
    rasa train
    ``` 
-   4. Run the chatbot using in one commandline:
+5. Run the chatbot in one commandline:
    ```
    rasa shell
    ```
-   and in a second commandline:
+6. Run action server in a second commandline:
    ```
    rasa run actions
    ```
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the [GNU General Public License v3.0.](LICENSE)
